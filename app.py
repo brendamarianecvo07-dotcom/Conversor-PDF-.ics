@@ -6,7 +6,7 @@ import re
 import io
 
 st.set_page_config(page_title="Conversor PDF para Calendário", page_icon="📅")
-st.title("📅 Conversor de Calendário Escolar/Anual")
+st.title("📅 Conversor de PDF/.ics")
 
 MESES_PT = {
     'JANEIRO': 1, 'FEVEREIRO': 2, 'MARÇO': 3, 'ABRIL': 4,
@@ -76,7 +76,7 @@ def processar_pdf(pdf_file):
     return cal.to_ical(), len(eventos)
 
 # Interface
-arquivo = st.file_uploader("Suba o arquivo teste2.pdf aqui", type="pdf")
+arquivo = st.file_uploader("Suba o arquivo PDF aqui", type="pdf")
 
 if arquivo:
     if st.button("Gerar Calendário"):
@@ -86,8 +86,9 @@ if arquivo:
             st.download_button(
                 label="📥 Baixar arquivo .ics",
                 data=conteudo_ics,
-                file_name="calendario_escola.ics",
+                file_name="calendario.ics",
                 mime="text/calendar"
             )
         else:
+
             st.warning("Nenhum evento encontrado. O formato do PDF pode ter mudado.")
